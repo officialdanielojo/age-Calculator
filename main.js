@@ -6,7 +6,13 @@ function calculateAge() {
   const inputYear = parseInt(document.querySelector("#year").value);
 
   // Validate input (optional)
-  if (isNaN(inputDay) || isNaN(inputMonth) || isNaN(inputYear)) {
+  if (
+    isNaN(inputDay) ||
+    isNaN(inputMonth) ||
+    isNaN(inputYear) ||
+    inputDay > 31 ||
+    inputMonth > 12
+  ) {
     alert("Invalid input. Please enter numeric values.");
     return;
   }
