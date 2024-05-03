@@ -53,8 +53,7 @@ form {
 }
 
 .sect-one form input::placeholder {
-  color: black;
-  font-weight: 600;
+  opacity: 0.6;
 }
 
 /* section two css */
