@@ -7,7 +7,7 @@ function calculateAge() {
 
   // Validate input (optional)
   if (isNaN(inputDay) || isNaN(inputMonth) || isNaN(inputYear)) {
-    console.error("Invalid input. Please enter numeric values.");
+    alert("Invalid input. Please enter numeric values.");
     return;
   }
 
