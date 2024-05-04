@@ -5,15 +5,9 @@ function calculateAge() {
   const inputMonth = parseInt(document.querySelector("#month").value);
   const inputYear = parseInt(document.querySelector("#year").value);
 
-  // Validate input (optional)
-  if (
-    isNaN(inputDay) ||
-    isNaN(inputMonth) ||
-    isNaN(inputYear) ||
-    inputDay > 31 ||
-    inputMonth > 12
-  ) {
-    alert("Invalid input. Please enter numeric values.");
+  // Validate input for empty input
+  if (isNaN(inputDay) || isNaN(inputMonth) || isNaN(inputYear)) {
+    alert("Invalid input. Please enter your date of birth.");
     return;
   }
 
@@ -22,6 +16,12 @@ function calculateAge() {
   const currentDay = currentDate.getDate();
   const currentMonth = currentDate.getMonth() + 1; // Months are 0-indexed
   const currentYear = currentDate.getFullYear();
+
+  // Validate input for wrong input
+  if (inputDay > 31 || inputMonth > 12 || inputYear > currentYear) {
+    alert("Invalid input. Please enter correct date of birth.");
+    return;
+  }
 
   // Calculate age
   let ageYear = currentYear - inputYear;
