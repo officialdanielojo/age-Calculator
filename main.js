@@ -50,8 +50,26 @@ function calculateAge() {
   const currentMonth = currentDate.getMonth() + 1; // Months are 0-indexed
   const currentYear = currentDate.getFullYear();
 
-  // Validate input for wrong input
-  if (inputDay > 31 || inputMonth > 12 || inputYear > currentYear) {
+  // Array to get days
+  const daysInNum = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
+  const leapYearDay = [29];
+
+  const monthsNum = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
+
+  // Function to get the leap year
+  function isLeapYear(year) {
+    return (year % 4 === 0 && year % 100 !== 0) || year % 400 === 0;
+  }
+
+  if (inputDay > daysInNum[inputMonth - 1] && isLeapYear(inputYear)) {
+    daysInNum[1] = 29;
+  }
+
+  if (
+    inputDay > daysInNum[inputMonth - 1] ||
+    inputYear > currentYear ||
+    (inputMonth > currentMonth && inputYear >= currentYear)
+  ) {
     for (let i = 0; i < date.length; i++) {
       date[i].style.color = "red";
     }
@@ -85,6 +103,9 @@ function calculateAge() {
     ).getDate();
     ageDay += daysInPrevMonth;
     ageMonth--;
+  }
+  if (inputYear === currentYear) {
+    ageYear = 0;
   }
 
   // Display the calculated age
