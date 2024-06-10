@@ -1,14 +1,47 @@
+// To get the days, month and year.
+const day = document.querySelector("#day");
+const month = document.querySelector("#month");
+const year = document.querySelector("#year");
+
+// For the error message
+const date = document.querySelectorAll(".date");
+const error = document.querySelectorAll(".error");
+const dateBorder = document.querySelectorAll(".date-border");
+
+// For the button
+const calculatorButton = document.querySelector("#calculateButton");
+
 // Function to calculate age
 function calculateAge() {
   // Get input values
-  const inputDay = parseInt(document.querySelector("#day").value);
-  const inputMonth = parseInt(document.querySelector("#month").value);
-  const inputYear = parseInt(document.querySelector("#year").value);
+  const inputDay = parseInt(day.value);
+  const inputMonth = parseInt(month.value);
+  const inputYear = parseInt(year.value);
 
   // Validate input for empty input
   if (isNaN(inputDay) || isNaN(inputMonth) || isNaN(inputYear)) {
-    alert("Invalid input. Please enter your date of birth.");
+    for (let i = 0; i < date.length; i++) {
+      date[i].style.color = "red";
+    }
+
+    for (let i = 0; i < error.length; i++) {
+      error[i].style.display = "block";
+    }
+
+    for (let i = 0; i < dateBorder.length; i++) {
+      dateBorder[i].style.border = "1px solid red";
+    }
     return;
+  } else {
+    for (let i = 0; i < date.length; i++) {
+      date[i].style.color = "";
+    }
+    for (let i = 0; i < error.length; i++) {
+      error[i].style.display = "";
+    }
+    for (let i = 0; i < dateBorder.length; i++) {
+      dateBorder[i].style.border = "";
+    }
   }
 
   // Get current date
@@ -19,7 +52,18 @@ function calculateAge() {
 
   // Validate input for wrong input
   if (inputDay > 31 || inputMonth > 12 || inputYear > currentYear) {
-    alert("Invalid input. Please enter correct date of birth.");
+    for (let i = 0; i < date.length; i++) {
+      date[i].style.color = "red";
+    }
+
+    for (let i = 0; i < error.length; i++) {
+      error[i].style.display = "block";
+      error[i].innerText = "Input a valid date";
+    }
+
+    for (let i = 0; i < dateBorder.length; i++) {
+      dateBorder[i].style.border = "1px solid red";
+    }
     return;
   }
 
@@ -50,6 +94,4 @@ function calculateAge() {
 }
 
 // When button is clicked
-document
-  .querySelector("#calculateButton")
-  .addEventListener("click", calculateAge);
+calculatorButton.addEventListener("click", calculateAge);
