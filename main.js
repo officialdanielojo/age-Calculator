@@ -52,9 +52,6 @@ function calculateAge() {
 
   // Array to get days
   const daysInNum = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
-  const leapYearDay = [29];
-
-  const monthsNum = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
 
   // Function to get the leap year
   function isLeapYear(year) {
@@ -68,7 +65,8 @@ function calculateAge() {
   if (
     inputDay > daysInNum[inputMonth - 1] ||
     inputYear > currentYear ||
-    (inputMonth > currentMonth && inputYear >= currentYear)
+    (inputMonth > currentMonth && inputYear >= currentYear) ||
+    (inputDay > currentDay && inputYear >= currentYear)
   ) {
     for (let i = 0; i < date.length; i++) {
       date[i].style.color = "red";
