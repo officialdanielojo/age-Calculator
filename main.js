@@ -83,9 +83,10 @@ function calculateAge() {
   }
 
   if (
-    inputDay > currentDay &&
-    inputMonth >= currentMonth &&
-    inputYear === currentYear
+    (inputDay > currentDay &&
+      inputMonth >= currentMonth &&
+      inputYear === currentYear) ||
+    (inputDay <= 0 && inputMonth <= 0 && inputYear <= 0)
   ) {
     for (let i = 0; i < date.length; i++) {
       date[i].style.color = "red";
