@@ -57,7 +57,7 @@ form {
 }
 
 .sect-one form .error {
-  font-size: 12px;
+  font-size: 9px;
   font-weight: 600;
   opacity: 0.6;
   color: #ff0000;
@@ -113,6 +113,10 @@ footer {
   font-style: italic;
 }
 
+footer div {
+  display: flex;
+}
+
 footer span {
   color: #874bff;
   padding-right: 10px;
@@ -134,6 +138,10 @@ footer span {
   .sect-one form input {
     width: 90%;
     font-size: 25px;
+  }
+
+  .sect-one form .error {
+    font-size: 12px;
   }
 
   /* section two media query */
