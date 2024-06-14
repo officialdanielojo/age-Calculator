@@ -83,7 +83,7 @@ function calculateAge() {
   }
 
   if (
-    (inputDay > 31 && inputMonth > 12 && inputYear >= currentYear) ||
+    (inputDay > 31 && inputMonth > 12 && inputYear > currentYear) ||
     (inputDay <= 0 && inputMonth <= 0 && inputYear <= 0)
   ) {
     for (let i = 0; i < date.length; i++) {
