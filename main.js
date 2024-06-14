@@ -83,9 +83,7 @@ function calculateAge() {
   }
 
   if (
-    (inputDay > currentDay &&
-      inputMonth >= currentMonth &&
-      inputYear === currentYear) ||
+    (inputDay > 31 && inputMonth > 12 && inputYear >= currentYear) ||
     (inputDay <= 0 && inputMonth <= 0 && inputYear <= 0)
   ) {
     for (let i = 0; i < date.length; i++) {
@@ -99,21 +97,12 @@ function calculateAge() {
       dateBorder[i].style.border = "1px solid red";
     }
     return;
-  } else if (inputDay > 31 && inputMonth > 12 && inputYear >= currentYear) {
-    for (let i = 0; i < date.length; i++) {
-      date[i].style.color = "red";
-    }
-    for (let i = 0; i < error.length; i++) {
-      error[i].style.display = "block";
-      error[i].innerText = "Input a valid date";
-    }
-    for (let i = 0; i < dateBorder.length; i++) {
-      dateBorder[i].style.border = "1px solid red";
-    }
-    return;
   } else if (
-    (inputDay > daysInNum[inputMonth - 1] && inputMonth > 12) ||
-    (inputDay <= 0 && inputMonth <= 0)
+    (inputDay > 31 && inputMonth > 12) ||
+    (inputDay <= 0 && inputMonth <= 0) ||
+    (inputDay > currentDay &&
+      inputMonth >= currentMonth &&
+      inputYear === currentYear)
   ) {
     dateDay.style.color = "red";
     dayBorder.style.border = "1px solid red";
