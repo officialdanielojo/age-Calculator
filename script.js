@@ -145,7 +145,11 @@ function calculateAge() {
     errorYear.style.display = "block";
     errorYear.innerText = "Input a valid year";
     return;
-  } else if (inputDay > daysInNum[inputMonth - 1] || inputDay <= 0) {
+  } else if (
+    inputDay > daysInNum[inputMonth - 1] ||
+    inputDay <= 0 ||
+    (inputDay < currentDay && inputMonth == currentMonth)
+  ) {
     dateDay.style.color = "red";
     dayBorder.style.border = "1px solid red";
     errorDay.style.display = "block";

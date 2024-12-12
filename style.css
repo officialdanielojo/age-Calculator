@@ -41,6 +41,7 @@ ul a {
   transition: all 0.4s linear;
   text-decoration: none;
   color: #4b5aff;
+  -webkit-tap-highlight-color: transparent;
 }
 
 ul a:hover {
@@ -118,6 +119,7 @@ form {
   align-items: center;
   justify-content: center;
   cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
 }
 
 .sect-two img {
