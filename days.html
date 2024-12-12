@@ -1,0 +1,88 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./style.css" />
+    <link rel="icon" href="./favicon-32x32.png" />
+    <title>Age Calculator</title>
+</head>
+
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li>
+                    <a href="./index.html">Check Age</a>
+                </li>
+            </ul>
+
+            <ul>
+                <li>
+                    <a href="./days.html">
+                        Check Days to Birthday
+                    </a>
+                </li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section class="sect-one">
+            <form>
+                <label class="date date_day">DAY</label>
+                <input type="number" class="date-border day_border" id="day" placeholder="DD" />
+                <p class="error day_error">This field is required</p>
+            </form>
+
+            <form>
+                <label class="date date_month">MONTH</label>
+                <input type="number" class="date-border month_border" id="month" placeholder="MM" />
+                <p class="error month_error">This field is required</p>
+            </form>
+
+            <form>
+                <label class="date date_year">YEAR</label>
+                <input type="number" class="date-border year_border" id="year" placeholder="YYYY" />
+                <p class="error year_error">This field is required</p>
+            </form>
+        </section>
+
+        <section class="sect-two">
+            <hr class="hr-one" />
+            <button id="calculateButton">
+                <img src="./icon-arrow.svg" alt="arrow" />
+            </button>
+
+            <hr class="hr-two" />
+        </section>
+
+        <footer>
+            <div class="birthday">
+                <p class="message">You have:</p>
+                <div><span id="months">--</span>
+                    <p id="month_word">month</p>
+                </div>
+
+                <div><span id="days">--</span>
+                    <p id="day_word">day</p>
+                </div>
+                <p class="message">
+                    to your birthday 🎉
+                </p>
+            </div>
+
+            <div class="birthday_message">
+                <p>🎉 Happy Birthday To You 🎉
+                </p>
+                <p>
+                    Today is your Birthday
+                </p>
+            </div>
+        </footer>
+    </main>
+
+    <script src="./script.js"></script>
+</body>
+
+</html>

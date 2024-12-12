@@ -5,6 +5,8 @@ const year = document.querySelector("#year");
 const days = document.querySelector("#days");
 const months = document.querySelector("#months");
 const years = document.querySelector("#years");
+const birthdayMessage = document.querySelector(".birthday_message");
+const birthday = document.querySelector(".birthday");
 
 // To get the day, month, year words
 const dayWord = document.querySelector("#day_word");
@@ -82,6 +84,7 @@ function calculateAge() {
     daysInNum[1] = 29;
   }
 
+  // Error Messages
   if (
     (inputDay > 31 && inputMonth > 12 && inputYear > currentYear) ||
     (inputDay <= 0 && inputMonth <= 0 && inputYear <= 0)
@@ -162,62 +165,52 @@ function calculateAge() {
     return;
   }
 
-  // Calculate age
-  let ageYear = currentYear - inputYear;
-  let ageMonth = currentMonth - inputMonth;
-  let ageDay = currentDay - inputDay;
+  /* CALCULATE DAYS TO BIRTHDAY */
+  //Arrays to get month number.
+  const monthsInNum = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
 
-  // Adjust for negative age components
-  if (ageMonth < 0 || (ageMonth === 0 && ageDay < 0)) {
-    ageYear--;
-    ageMonth += 12;
-  }
-  if (ageDay < 0) {
-    const daysInPrevMonth = new Date(
-      currentYear,
-      currentMonth - 1,
-      0
-    ).getDate();
-    ageDay += daysInPrevMonth;
-    ageMonth--;
-  }
-  if (inputYear === currentYear) {
-    ageYear = 0;
-  } else if (inputYear > currentYear || inputYear <= 0) {
-    ageMonth = "--";
-    ageDay = "--";
-    ageYear = "--";
+  const daysLeft = new Date(currentYear, currentMonth + 1, 0).getDate();
+  const daysLeftInMonth = daysLeft - currentDay;
+
+  function sumOfDays(array, index) {
+    let sum = 0;
+    for (let i = 0; i <= index - 2; i++) {
+      sum += array[i];
+    }
+    return sum;
   }
 
-  if (
-    inputMonth > 12 ||
-    (inputYear === currentYear && inputMonth > currentMonth) ||
-    (inputDay > 31 && inputMonth > 12 && inputYear >= currentYear) ||
-    inputMonth <= 0
-  ) {
-    ageMonth = "--";
-    ageDay = "--";
-    ageYear = "--";
-  } else if (
-    inputDay > 31 ||
-    inputDay > daysInNum[inputMonth - 1] ||
-    inputDay <= 0
-  ) {
-    ageMonth = "--";
-    ageDay = "--";
-    ageYear = "--";
+  const addIndex = inputMonth;
+  const daysInComingMonth = sumOfDays(daysInNum, addIndex);
+  const daysToBirth = daysLeftInMonth + inputDay;
+
+  let y = monthsInNum[addIndex - 2];
+
+  let ageMonth = y;
+  let ageDay = daysToBirth;
+
+  // condition to check if user is yet to hold their birthday in current year.
+  if (inputMonth === currentMonth) {
+    let x = inputDay - currentDay;
+    ageDay = x;
+    ageMonth = 0;
+  }
+  if (inputMonth < 2) {
+    ageMonth = 0;
+    console.log(ageMonth);
+  }
+
+  if (ageDay == 0) {
+    birthday.style.display = "none";
+    birthdayMessage.style.display = "block";
+  } else {
+    birthday.style.display = "block";
+    birthdayMessage.style.display = "none";
   }
 
   // Display the calculated age
   days.textContent = ageDay;
   months.textContent = ageMonth;
-  years.textContent = ageYear;
-
-  if (ageYear > 1) {
-    yearWord.innerText = "years";
-  } else {
-    yearWord.innerText = "year";
-  }
 
   if (ageMonth > 1) {
     monthWord.innerText = "months";
@@ -226,9 +219,9 @@ function calculateAge() {
   }
 
   if (ageDay > 1) {
-    dayWord.innerText = "days old";
+    dayWord.innerText = "days";
   } else {
-    dayWord.innerText = "day old";
+    dayWord.innerText = "day";
   }
 }
 
